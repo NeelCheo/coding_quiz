@@ -1,5 +1,5 @@
 <html lang="en">
-
+  
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,27 +9,27 @@
 </head>
 
 <body>
-    <Header>
+  <Header>
     <nav id="score">scores</nav>
     <!-- uses js to show timer -->
     <p id="timer"></p>
-    </Header>
+  </Header>
 
-    <main>
-      <form id="quiz-area">
-        <!-- uses js to add question -->
-        <h1 id="question"></h1>
-        <div id="answer-area">
-          <!-- uses append child in js to add answers as buttons-->
-          <ul id="answers"></ul>
-        </div>
-      </form>
-      
-      <section id="highscore-area">
-        <!-- uses append child and local storage in js to show list info -->
-        <ul id="highscore-list"></ul>
-      </section>
-    </main>
+  <main>
+    <form id="quiz-area">
+      <!-- uses js to add question -->
+      <h1 id="question-area"></h1>
+      <div id="answer-area">
+        <!-- uses append child in js to add answers as buttons-->
+        <ul id="answers"></ul>
+      </div>
+    </form>
+    
+    <section id="highscore-area">
+      <!-- uses append child and local storage in js to show list info -->
+      <ul id="highscore-list"></ul>
+    </section>
+  </main>
 
   <script src= "./assets/script.js"></script>
 </body>
