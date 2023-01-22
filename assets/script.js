@@ -71,5 +71,3 @@ function printScore() { //once quiz ends it will print scores from local storage
 }
 
 quizButton.addEventListener("click", startQuiz);
-
-// event.target.innerText == quiz[i]
