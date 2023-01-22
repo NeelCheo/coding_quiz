@@ -1,5 +1,5 @@
 <html lang="en">
-  
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,16 +21,22 @@
       <h1 id="question-area"></h1>
       <div id="answer-area">
         <!-- uses append child in js to add answers as buttons-->
-        <ul id="answers"></ul>
+        <ul id="answers">
+          <li id="option"></li>
+        </ul>
+      </div>
+      <div id = button-area>
+        <button id="quizButton">Start</button>
       </div>
     </form>
-    
+
     <section id="highscore-area">
       <!-- uses append child and local storage in js to show list info -->
       <ul id="highscore-list"></ul>
     </section>
   </main>
 
-  <script src= "./assets/script.js"></script>
+  <script src="./assets/script.js"></script>
 </body>
+
 </html>
