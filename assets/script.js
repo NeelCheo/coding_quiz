@@ -5,17 +5,18 @@ var questionArea = document.getElementById("question-area");
 var answerArea = document.getElementById("answer-area");
 var answerList = document.getElementById("answers");
 var highscoreArea = document.getElementById("hgihscore-area");
-var highscoreList = document.getElementById("hgihscore-List");
+var highscoreList = document.getElementById("highscoreList");
 var quizButton = document.getElementById("quizButton");
 var option = document.getElementById("option");
 var scoreButton = document.getElementById("scoreButton");
 var againButton = document.getElementById("againButton");
 
 // local storage variables
-//var name = nameInput.value; //this will be declared in a function later on
-var highscores = [];
+var highscoreName = [];
+var highscoreScore= [];
+
 var i = 0; // for itterating through the question set
-var time = 100;//time is based on how many questions there are 
+var time = 50;
 
 // copy and paste the question format to add more question and just change the strings
 var quiz = [
@@ -47,7 +48,6 @@ function printQuestionSet() { //occurs when you start the quiz and when you sele
 }
 
 function endQuiz() { //occurs when you answer the last question
-  console.log("END QUIZ");
   clearInterval(timeID);
   timerArea.textContent = time;
   questionArea.innerText = "youre score is: "+time;
@@ -63,23 +63,17 @@ function endQuiz() { //occurs when you answer the last question
 
 //timer stuff 
 function timer() { //sets the timer based on the amount of questions there are
-    time--;
     timerArea.textContent = time;
+    time--;
     if(time === 0 || time < 0){
       timerArea.textContent = 0;
-      endQuiz();
-    }
-    if(i>=quiz.length){
+      time = 0;
       endQuiz();
     }
   }
 
 function checkAnswer(event) { 
-  if(event.target.innerText == quiz[i].answer){ //correct is not needed
-    console.log('correct');
-  }
   if(event.target.innerText !== quiz[i].answer){
-      console.log('wrong');
       time = time -10;
   }
   if(i<quiz.length-1){
@@ -92,11 +86,31 @@ function checkAnswer(event) {
 
 function submitScore(event) { //occurs when you finish the quiz and submit your name and prints to local stoarage
   event.preventDefault();
-  console.log("score Submited")
+  var nameInput = document.getElementById("name"); // first part submits the name
+  nameText = nameInput.value.trim();
+  if(nameText ===""){
+    return;
+  }
+  highscoreName.push(nameText);
+  localStorage.setItem("highscoreName",JSON.stringify(highscoreName));
+  highscoreScore.push(time); // second part store the respective score
+  localStorage.setItem("highscoreScore",JSON.stringify(highscoreScore));
+  printScore();
+  scoreButton.style.display = "none"
 }
 
-function printScore() { //once quiz ends it will print scores from local storage
-  console.log("scores are printed")
+function printScore() { //it will print scores from local storage
+  if (localStorage.getItem("highscoreName") == null){
+    return;
+  }
+  highscoreList.textContent ="";
+  highscoreName = JSON.parse(localStorage.getItem("highscoreName"));
+  highscoreScore = JSON.parse(localStorage.getItem("highscoreScore"));
+  for(x=0;x<highscoreName.length;x++){
+    var li = document.createElement("li");
+    li.textContent = highscoreName[x]+": "+highscoreScore[x];
+    highscoreList.appendChild(li);
+  }
 }
 
 quizButton.addEventListener("click", startQuiz);
