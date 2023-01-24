@@ -30,6 +30,7 @@ var quiz = [
 printScore();
 function startQuiz(event) { // on click function, handles the code for the quiz when you click the start button 
   event.preventDefault();
+  timerArea.textContent = "Time Left: "+time;
   printQuestionSet();
   timeID = setInterval(timer,1000);
   quizButton.style.display ="none";
@@ -50,7 +51,7 @@ function printQuestionSet() { //occurs when you start the quiz and when you sele
 function endQuiz() { //occurs when you answer the last question
   clearInterval(timeID);
   timerArea.textContent = time;
-  questionArea.innerText = "youre score is: "+time;
+  questionArea.innerText = "your score is: "+time;
   scoreButton.style.display="block";
   againButton.style.display="block";
   answerArea.textContent = "";
@@ -63,7 +64,7 @@ function endQuiz() { //occurs when you answer the last question
 
 //timer stuff 
 function timer() { //sets the timer based on the amount of questions there are
-    timerArea.textContent = time;
+    timerArea.textContent = "Time Left: "+time;
     time--;
     if(time === 0 || time < 0){
       timerArea.textContent = 0;
